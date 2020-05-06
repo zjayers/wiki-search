@@ -1,0 +1,9 @@
+<form (submit)="onFormSubmit($event)">
+  <input
+    name="search"
+    type="text"
+    placeholder="Enter search term..."
+    [(ngModel)]="searchTerm"
+  />
+  <button type="submit">Search</button>
+</form>
