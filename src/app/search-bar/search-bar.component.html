@@ -1,9 +1,12 @@
-<form (submit)="onFormSubmit($event)">
-  <input
-    name="search"
-    type="text"
-    placeholder="Enter search term..."
-    [(ngModel)]="searchTerm"
-  />
-  <button type="submit">Search</button>
-</form>
+<div class="box">
+  <form (submit)="onFormSubmit($event)">
+    <input
+      class="input is-inline-block"
+      name="search"
+      type="text"
+      placeholder="Enter search term..."
+      [(ngModel)]="searchTerm"
+    />
+    <button class="button input is-inline-block" type="submit">Search</button>
+  </form>
+</div>

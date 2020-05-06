@@ -1,4 +1,4 @@
-<table class="table is-striped">
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
   <thead>
     <tr>
       <th>Title</th>
@@ -8,9 +8,15 @@
   </thead>
   <tbody>
     <tr *ngFor="let chunk of data">
-      <td>{{ chunk.title }}</td>
+      <td>
+        <a
+          [href]="'https://en.wikipedia.org?curid=' + chunk.pageid"
+          target="_blank"
+          >{{ chunk.title }}</a
+        >
+      </td>
       <td>{{ chunk.wordcount }}</td>
-      <td>{{ chunk.snippet }}</td>
+      <td [innerHTML]="chunk.snippet"></td>
     </tr>
   </tbody>
 </table>
