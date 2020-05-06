@@ -9,9 +9,11 @@ import { WikipediaService } from './wikipedia.service';
 export class AppComponent {
   searchResults = [];
 
-  constructor(private wiki: WikipediaService) {}
+  constructor(private wikipedia: WikipediaService) {}
 
-  async onSearchSubmit(searchTerm: string) {
-    this.searchResults = await this.wiki.search(searchTerm);
+  onSearchSubmit(term: string) {
+    this.wikipedia.search(term).subscribe((response: any) => {
+      this.searchResults = response.query.search;
+    });
   }
 }

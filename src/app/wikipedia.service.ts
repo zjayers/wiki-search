@@ -1,28 +1,22 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WikipediaService {
-  url = 'https://en.wikipedia.org/w/api.php?origin=*';
+  constructor(private http: HttpClient) {}
 
-  params = {
-    action: 'query',
-    list: 'search',
-    srsearch: '',
-    format: 'json',
-  };
-
-  constructor() {}
-
-  public async search(searchTerm: string) {
-    this.url = 'https://en.wikipedia.org/w/api.php?origin=*';
-    this.params.srsearch = searchTerm;
-    Object.keys(this.params).forEach((key) => {
-      this.url += '&' + key + '=' + this.params[key];
+  public search(term: string) {
+    return this.http.get('https://en.wikipedia.org/w/api.php', {
+      params: {
+        action: 'query',
+        format: 'json',
+        list: 'search',
+        utf8: '1',
+        srsearch: term,
+        origin: '*',
+      },
     });
-    const res = await fetch(this.url);
-    const data = await res.json();
-    return data.query.search;
   }
 }
